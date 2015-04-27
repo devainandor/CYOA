@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 120%;
+    line-height: 160%;
+    font-family: 'Sorts Mill Goudy', serif;
+}
+
+#container {
+    padding-top: 8ex;
+    width: 66ex;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30ex;
+}
+
+section {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 4ex;
+}
+
+section p {
+    padding: 2ex;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0;
+}
+
+.inactive {
+    color: #666;
+    cursor: default;
+}
+
+.selected {
+    background: #efefef;
+}
+
+li {
+    cursor: pointer;
+    padding: 1ex;
+    padding-left: 2ex;
+    padding-right: 2ex;
+}
+
+nav {
+    position: fixed;
+    background: #fff;
+    display: block;
+    width: 100%;
+    padding: 1ex;
+    padding-left: 3ex;
+    border-bottom: 1px solid #efefef;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+}
+
+nav span {
+    cursor: pointer;
+}
+
+nav span, nav a {
+    padding-left: 1ex;
+    padding-right: 1ex;
+}
+
+#current_a, #current_a:visited {
+    display: none;
+    color: #33c;
+    text-decoration: underline;
+}
+
+a {
+    color: #33c;
+}
+
+.illustration {
+    background-size: contain;
+    background-repeat: no-repeat;
+}

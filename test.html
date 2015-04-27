@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="jquery-2.1.3.min.js"></script>
+<nav><span id="restart">Restart game</span></nav>
+<div id="container">
+
+<section id="s1">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ul>
+        <li class="to" data-to="s2">Lorem ipsum</li>
+        <li class="to" data-to="s3">Dolor sit amet</li>
+    </ul>
+</section>
+
+<section id="s2">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ul>
+        <li class="to" data-to="s4">Excepteur</li>
+    </ul>
+</section>
+
+<section id="s3">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ul>
+        <li class="to" data-to="s4">Excepteur</li>
+    </ul>
+</section>
+
+<section id="s4">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</section>
+
+</div><!-- #container -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+    var lastSection = localStorage.getItem('lastSection');
+    if (lastSection != 'null') {
+        $('#' + lastSection).show();
+    } else {
+        $('#s1').show();
+    }
+
+    $('.to').on('click', function() { 
+        var el = $('#' + $(this).data('to'))
+        el.show();
+        $('html, body').animate({
+            scrollTop: $(this).offset().top - $('nav').height() - 50
+        }, 1000);
+        $(this).addClass('selected');
+        $(this).parent().children().off('click');
+        $(this).parent().children().addClass('inactive');
+        localStorage.setItem('lastSection', $(this).data('to'));
+    });
+
+    $('#restart').on('click', function() {
+        if (confirm('If you restart you will lose all progress!')) {
+            localStorage.setItem('lastSection', 's1');
+            location.reload();
+        }
+    });
+});
+</script>
+</body>
+</html>
