@@ -21,25 +21,25 @@
 </nav>
 <div id="container">
 
-<h2>Steve Jackson & Ian Livingstone</h2>
-<h1> A skorpiók mocsara</h1>
+<h2>Author’s Name</h2>
+<h1> Choose Your Own Adventure</h1>
 
 
 <section id="s1">
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 
 <ul>
-<li class="to" data-to="s2"> Lorem ipsum</li>
-<li class="to" data-to="s3"> Dolor sit amet</li>
+<li class="to" data-to="s2"> Go north</li>
+<li class="to" data-to="s3"> Go south</li>
 </ul>
 </section>
 
 
 <section id="s2">
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-<div class="illustration" style="background-image: url(dragon.png);"></div>
+<div class="illustration" style="background-image: url(/dragon.png); width: 466px; height: 660px;"></div>
 <ul>
-<li class="to" data-to="s4"> Excepteur</li>
+<li class="to" data-to="s4"> Go east</li>
 </ul>
 </section>
 
@@ -48,13 +48,13 @@
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 
 <ul>
-<li class="to" data-to="s4"> Excepteur</li>
+<li class="to" data-to="s4"> Go west</li>
 </ul>
 </section>
 
 
 <section id="s4">
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  </p>
 
 <ul>
 </ul>
@@ -66,7 +66,7 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    var adventureID = 'oLAHcwkI';
+    var adventureID = 'PpDHAfXF';
     var lastSection = localStorage.getItem(adventureID + '_lastSection');
     if (lastSection == null) {
         lastSection = 's1';
@@ -74,7 +74,7 @@ $(document).ready(function () {
     }
     $('#' + lastSection).show();
 
-    $('.to').on('click', function() { 
+    $('.to').on('click', function() {
         var el = $('#' + $(this).data('to'))
         el.show();
         $('html, body').animate({
@@ -94,14 +94,14 @@ $(document).ready(function () {
             location.reload();
         }
     });
-    
+
     //$('#current').on('click', function() {
     //    var currentChapterHref = adventureID + '.html#' + localStorage.getItem(adventureID + '_lastSection');
     //    $('#current_a').attr('href', currentChapterHref);
     //    $(this).hide();
     //    $('#current_a').show();
     //});
-    
+
 });
 </script>
 </body>

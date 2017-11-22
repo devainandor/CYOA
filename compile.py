@@ -16,7 +16,7 @@ section_template = """
 
 choice_template = '<li class="to" data-to="s{}">{}</li>\n'
 
-image_template = '<div class="illustration" style="background-image: url({});"></div>'
+image_template = '<div class="illustration" style="background-image: url({}); width: {}px; height: {}px;"></div>'
 
 def generate_adventure_id():
     while True:
@@ -72,11 +72,13 @@ for section in source_content.split('\n\n')[1:]:
             to, text = line.split(':')
             choices = choices + choice_template.format(to, text)
         elif re.match('\(.*\)', line):
-            image = image_template.format(line[1:-1])
+            filename, size = line[1:-1].split()
+            width, height = size.split('x')
+            image = image_template.format(filename, width, height)
         else:
             description = description + line + ' '
     outfile.write(section_template.format(
-        section_id.replace('.', ''), 
+        section_id.replace('.', ''),
         description,
         image,
         choices
@@ -98,7 +100,7 @@ outfile.write("""';
     }
     $('#' + lastSection).show();
 
-    $('.to').on('click', function() { 
+    $('.to').on('click', function() {
         var el = $('#' + $(this).data('to'))
         el.show();
         $('html, body').animate({
@@ -118,14 +120,14 @@ outfile.write("""';
             location.reload();
         }
     });
-    
+
     //$('#current').on('click', function() {
     //    var currentChapterHref = adventureID + '.html#' + localStorage.getItem(adventureID + '_lastSection');
     //    $('#current_a').attr('href', currentChapterHref);
     //    $(this).hide();
     //    $('#current_a').show();
     //});
-    
+
 });
 </script>
 </body>
