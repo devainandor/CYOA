@@ -1,16 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title></title>
+<meta charset="utf-8">
+<title>Choose your own adventure – Lorem Ipsum</title>
+<link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Parisienne&amp;subset=latin-ext" rel="stylesheet">
+<style media="screen">
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-family: 'Sorts Mill Goudy', serif;
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    width: 60%;
+    text-align: center;
+}
+
+li {
+    cursor: pointer;
+    line-height: 2;
+    margin: 0 -2.2rem;
+    padding: 0 1rem;
+    transition: background .5s;
+}
+
+li:hover {
+    background: #eee;
+}
+
+nav {
+    background: #fff;
+    box-shadow: 0px 1px 3px #ccc;
+    display: flex;
+    opacity: .9;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 3rem;
+}
+
+nav * {
+    box-sizing: border-box;
+    line-height: 3rem;
+}
+
+p {
+    margin: 0;
+    text-indent: 1rem;
+}
+
+p:first-child {
+    text-indent: 0;
+}
+
+section:first-of-type p:first-child:first-letter {
+    font-size: 3rem;
+    font-family: 'Parisienne', cursive;
+}
+
+section {
+    display: none;
+}
+
+ul {
+    list-style-position: inside;
+    padding: 0;
+}
+
+#container {
+    width: 66ex;
+    margin: 5rem auto;
+}
+
+#restart,
+#spacer {
+    width: 20%;
+}
+
+#restart {
+    cursor: pointer;
+    padding-left: 1rem;
+}
+
+#spacer {
+    padding-right: 1rem;
+}
+
+.seen {
+    display: block;
+}
+
+.seen li {
+    display: none;
+}
+
+.seen li.seen,
+.active li {
+    display: list-item;
+}
+
+</style>
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="jquery-2.1.3.min.js"></script>
-<nav><span id="restart">Restart game</span></nav>
+
+<nav>
+    <span id="restart">Restart game</span>
+    <h1>Lorem Ipsum</h1>
+    <span id="spacer"></span>
+</nav>
+
 <div id="container">
 
 <section id="s1">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -48,40 +160,51 @@
 </section>
 
 <section id="s4">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </section>
 
 </div><!-- #container -->
 
 <script type="text/javascript">
-$(document).ready(function () {
-    var lastSection = localStorage.getItem('lastSection');
-    if (lastSection != 'null') {
-        $('#' + lastSection).show();
-    } else {
-        $('#s1').show();
-    }
+function getCurrentSection () {
+    const path = localStorage.getItem('path');
+    const selector = path === null ? '#s1' : `#${path.split(',').pop()}`;
+    return document.querySelector(selector);
+};
 
-    $('.to').on('click', function() { 
-        var el = $('#' + $(this).data('to'))
-        el.show();
-        $('html, body').animate({
-            scrollTop: $(this).offset().top - $('nav').height() - 50
-        }, 1000);
-        $(this).addClass('selected');
-        $(this).parent().children().off('click');
-        $(this).parent().children().addClass('inactive');
-        localStorage.setItem('lastSection', $(this).data('to'));
+window.addEventListener('DOMContentLoaded', (event) => {
+    const path = localStorage.getItem('path');
+    if (path !== null) {
+        path.split(',').forEach((_, i) => {
+            document.querySelector(`#${_}`).classList.add('seen');
+            if (i > 0) {
+                document.querySelector(`[data-to=${_}]`).classList.add('seen');
+            }
+        });
+    } else {
+        localStorage.setItem('path', 's1');
+        document.querySelector('#s1').classList.add('seen');
+    }
+    getCurrentSection().classList.add('active');
+
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('to')) {
+            getCurrentSection().classList.remove('active');
+            const nextSelected = document.querySelector(`#${event.target.dataset.to}`);
+            nextSelected.classList.add('seen', 'active');
+            event.target.classList.add('seen');
+            localStorage.setItem('path', `${localStorage.getItem('path')},${event.target.dataset.to}`);
+        }
     });
 
-    $('#restart').on('click', function() {
+    document.querySelector('#restart').addEventListener('click', () => {
         if (confirm('If you restart you will lose all progress!')) {
-            localStorage.setItem('lastSection', 's1');
+            localStorage.setItem('path', 's1');
             location.reload();
         }
     });

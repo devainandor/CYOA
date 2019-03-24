@@ -53,6 +53,7 @@ outfile.write("""
 """)
 
 source_content = source.read()
+# TODO: split once?
 meta = source_content.split('\n\n')[0]
 author, title = meta.split(':')
 
@@ -63,13 +64,14 @@ outfile.write("""
 """.format(author, title))
 
 for section in source_content.split('\n\n')[1:]:
+    # TODO: check if section id is a valid HTML id
     section_id, content = section.split('\n', 1)
     description = ''
     choices = ''
     image = ''
     for line in content.split('\n'):
-        if re.match('\d+:', line):
-            to, text = line.split(':')
+        if re.match('->', line):
+            text, to = line.split('->')
             choices = choices + choice_template.format(to, text)
         elif re.match('\(.*\)', line):
             filename, size = line[1:-1].split()
