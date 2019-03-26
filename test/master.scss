@@ -1,0 +1,169 @@
+$bg-color-dark: #333;
+$bg-color-light: #fff;
+$disabled-color-dark: #999;
+$disabled-color-light: #ccc;
+$hover-bg-color-dark: #444;
+$hover-bg-color-light: #eee;
+$nav-height: 3rem;
+$shadow-color-dark: #000;
+$shadow-color-light: #ccc;
+$text-color-dark: #ccc;
+$text-color-light: #333;
+
+body {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin: 0;
+    padding: 0;
+
+    &.light {
+        background-color: $bg-color-light;
+        color: $text-color-light;
+    }
+
+    &.dark {
+        background-color: $bg-color-dark;
+        color: $text-color-dark;
+    }
+}
+
+body,
+nav {
+    transition: background-color 1s, box-shadow 1s;
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1.5;
+    margin: 8rem 0 4rem 0;
+}
+
+li {
+    border-radius: 3px;
+    cursor: pointer;
+    left: -.5rem;
+    line-height: 2;
+    padding-left: .5rem;
+    position: relative;
+    transition: background .25s;
+
+    &::before {
+        content: '»';
+        left: -1rem;
+        position: absolute;
+        transition: left .25s
+    }
+
+    &:hover::before {
+        left: -.75rem;
+    }
+}
+
+nav {
+    display: flex;
+    height: $nav-height;
+    opacity: .9;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+
+    * {
+        box-sizing: border-box;
+        line-height: $nav-height;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        width: 60%;
+        text-align: center;
+    }
+}
+
+p {
+    margin: 0;
+    text-indent: 1rem;
+
+    &:first-child {
+        text-indent: 0;
+    }
+}
+
+section:first-of-type p:first-child:first-letter {
+    font-size: 3rem;
+    font-family: 'Parisienne', cursive;
+}
+
+ul {
+    list-style-type: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+#container {
+    width: 66ex;
+    margin: 5rem auto;
+}
+
+#restart,
+#dark {
+    cursor: pointer;
+    width: 20%;
+}
+
+#restart {
+    padding-left: 1rem;
+}
+
+#dark {
+    padding-right: 1rem;
+    text-align: right;
+}
+
+.noninteractive {
+    pointer-events: none;
+}
+
+body.light {
+    li:hover {
+        background: $hover-bg-color-light;
+    }
+
+    .noninteractive {
+        li {
+            color: $disabled-color-light;
+
+            &.seen {
+                color: $text-color-light;
+            }
+        }
+    }
+
+    nav {
+        background: $bg-color-light;
+        box-shadow: 0px 1px 3px $shadow-color-light;
+    }
+}
+
+body.dark {
+    li:hover {
+        background: $hover-bg-color-dark;
+    }
+
+    .noninteractive {
+        li {
+            color: $disabled-color-dark;
+
+            &.seen {
+                color: $text-color-dark;
+            }
+        }
+    }
+
+        nav {
+            background: $bg-color-dark;
+            box-shadow: 0px 1px 3px $shadow-color-dark;
+        }
+}

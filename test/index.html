@@ -2,111 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Choose your own adventure – Lorem Ipsum</title>
+<title>Choose your own adventure – Reprehenderit in Voluptate</title>
 <link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Parisienne&amp;subset=latin-ext" rel="stylesheet">
-<style media="screen">
-body {
-    margin: 0;
-    padding: 0;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-    font-family: 'Sorts Mill Goudy', serif;
-}
-
-h1 {
-    font-size: 1.2rem;
-    margin: 0;
-    width: 60%;
-    text-align: center;
-}
-
-li {
-    cursor: pointer;
-    line-height: 2;
-    margin: 0 -2.2rem;
-    padding: 0 1rem;
-    transition: background .5s;
-}
-
-li:hover {
-    background: #eee;
-}
-
-nav {
-    background: #fff;
-    box-shadow: 0px 1px 3px #ccc;
-    display: flex;
-    opacity: .9;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 3rem;
-}
-
-nav * {
-    box-sizing: border-box;
-    line-height: 3rem;
-}
-
-p {
-    margin: 0;
-    text-indent: 1rem;
-}
-
-p:first-child {
-    text-indent: 0;
-}
-
-section:first-of-type p:first-child:first-letter {
-    font-size: 3rem;
-    font-family: 'Parisienne', cursive;
-}
-
-ul {
-    list-style-position: inside;
-    padding: 0;
-}
-
-#container {
-    width: 66ex;
-    margin: 5rem auto;
-}
-
-#restart,
-#spacer {
-    width: 20%;
-}
-
-#restart {
-    cursor: pointer;
-    padding-left: 1rem;
-}
-
-#spacer {
-    padding-right: 1rem;
-}
-
-.noninteractive {
-    pointer-events: none;
-}
-
-.noninteractive li {
-    color: #999;
-}
-
-.noninteractive li.seen {
-    color: #000;
-}
-
-</style>
+<link rel="stylesheet" href="/master.css">
 </head>
-<body>
+<body class="light">
 
 <nav>
     <span id="restart">Restart game</span>
-    <h1>Lorem Ipsum</h1>
-    <span id="spacer"></span>
+    <h1>Reprehenderit in Voluptate</h1>
+    <span id="dark">Dark mode</span>
 </nav>
 
 <template id="s1-t">
@@ -144,7 +50,9 @@ ul {
     </section>
 </template>
 
-<div id="container"></div>
+<div id="container">
+    <h1>Reprehenderit in Voluptate</h1>
+</div>
 
 <script type="text/javascript">
 const globalPrefix = 'cyoa';
@@ -204,6 +112,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             localStorage.setItem(getKey(), 's1');
             document.querySelector('#container').innerHTML = '';
             replay();
+        }
+    });
+
+    document.querySelector('#dark').addEventListener('click', (event) => {
+        document.body.classList.toggle('light');
+        document.body.classList.toggle('dark');
+        if (document.body.classList.contains('light')) {
+            event.target.innerHTML = 'Dark mode';
+        } else {
+            event.target.innerHTML = 'Light mode';
         }
     });
 });
