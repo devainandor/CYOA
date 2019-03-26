@@ -63,10 +63,6 @@ section:first-of-type p:first-child:first-letter {
     font-family: 'Parisienne', cursive;
 }
 
-section {
-    display: none;
-}
-
 ul {
     list-style-position: inside;
     padding: 0;
@@ -91,17 +87,16 @@ ul {
     padding-right: 1rem;
 }
 
-.seen {
-    display: block;
+.noninteractive {
+    pointer-events: none;
 }
 
-.seen li {
-    display: none;
+.noninteractive li {
+    color: #999;
 }
 
-.seen li.seen,
-.active li {
-    display: list-item;
+.noninteractive li.seen {
+    color: #000;
 }
 
 </style>
@@ -114,98 +109,101 @@ ul {
     <span id="spacer"></span>
 </nav>
 
-<div id="container">
+<template id="s1-t">
+    <section id="s1">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ul>
+            <li class="to" data-to="s2">Lorem ipsum</li>
+            <li class="to" data-to="s3">Dolor sit amet</li>
+        </ul>
+    </section>
+</template>
 
-<section id="s1">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <ul>
-        <li class="to" data-to="s2">Lorem ipsum</li>
-        <li class="to" data-to="s3">Dolor sit amet</li>
-    </ul>
-</section>
+<template id="s2-t">
+    <section id="s2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ul>
+            <li class="to" data-to="s4">Excepteur</li>
+        </ul>
+    </section>
+</template>
 
-<section id="s2">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <ul>
-        <li class="to" data-to="s4">Excepteur</li>
-    </ul>
-</section>
+<template id="s3-t">
+    <section id="s3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ul>
+            <li class="to" data-to="s4">Excepteur</li>
+        </ul>
+    </section>
+</template>
 
-<section id="s3">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <ul>
-        <li class="to" data-to="s4">Excepteur</li>
-    </ul>
-</section>
+<template id="s4-t">
+    <section id="s4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+</template>
 
-<section id="s4">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</section>
-
-</div><!-- #container -->
+<div id="container"></div>
 
 <script type="text/javascript">
+const globalPrefix = 'cyoa';
+const adventurePrefix = 'test';
+
+function getKey() {
+    return `${globalPrefix}_${adventurePrefix}_path`;
+}
+
 function getCurrentSection () {
-    const path = localStorage.getItem('path');
+    const path = localStorage.getItem(getKey());
     const selector = path === null ? '#s1' : `#${path.split(',').pop()}`;
     return document.querySelector(selector);
-};
+}
+
+function replay() {
+    getSavedPath().forEach((section) => {
+        showSection(section);
+    });
+}
+
+function showSection(section) {
+    const template = document.querySelector(`#${section}-t`);
+    document.querySelector('#container').appendChild(template.content);
+}
+
+function getSavedPath() {
+    const path = localStorage.getItem(getKey());
+    if (path !== null) {
+        return path.split(',');
+    } else {
+        const startSection = 's1';
+        localStorage.setItem(getKey(), startSection);
+        return [startSection];
+    }
+}
+
+function setVisited(section) {
+    section.classList.remove('active');
+    section.querySelector('ul').classList.add('noninteractive');
+}
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    const path = localStorage.getItem('path');
-    if (path !== null) {
-        path.split(',').forEach((_, i) => {
-            document.querySelector(`#${_}`).classList.add('seen');
-            if (i > 0) {
-                document.querySelector(`[data-to=${_}]`).classList.add('seen');
-            }
-        });
-    } else {
-        localStorage.setItem('path', 's1');
-        document.querySelector('#s1').classList.add('seen');
-    }
-    getCurrentSection().classList.add('active');
+    replay();
 
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('to')) {
-            getCurrentSection().classList.remove('active');
-            const nextSelected = document.querySelector(`#${event.target.dataset.to}`);
-            nextSelected.classList.add('seen', 'active');
+            setVisited(getCurrentSection());
             event.target.classList.add('seen');
-            localStorage.setItem('path', `${localStorage.getItem('path')},${event.target.dataset.to}`);
+            localStorage.setItem(getKey(), `${localStorage.getItem(getKey())},${event.target.dataset.to}`);
+            showSection(event.target.dataset.to);
         }
     });
 
     document.querySelector('#restart').addEventListener('click', () => {
         if (confirm('If you restart you will lose all progress!')) {
-            localStorage.setItem('path', 's1');
-            location.reload();
+            localStorage.setItem(getKey(), 's1');
+            document.querySelector('#container').innerHTML = '';
+            replay();
         }
     });
 });
