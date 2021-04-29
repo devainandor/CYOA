@@ -1,1 +1,3 @@
 *.map
+.vscode/
+.DS_Store

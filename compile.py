@@ -18,11 +18,13 @@ choice_template = '<li class="to" data-to="s{}">{}</li>\n'
 
 image_template = '<div class="illustration" style="background-image: url({}); width: {}px; height: {}px;"></div>'
 
+
 def generate_adventure_id():
     while True:
         adventure_id = ''.join(random.sample(string.ascii_letters, 8))
         if not os.path.exists(adventure_id + '.html'):
             return adventure_id
+
 
 source = open(sys.argv[1], 'r', encoding='utf-8')
 adventure_id = generate_adventure_id()
@@ -73,7 +75,7 @@ for section in source_content.split('\n\n')[1:]:
         if re.match('->', line):
             text, to = line.split('->')
             choices = choices + choice_template.format(to, text)
-        elif re.match('\(.*\)', line):
+        elif re.match(r'\(.*\)', line):
             filename, size = line[1:-1].split()
             width, height = size.split('x')
             image = image_template.format(filename, width, height)
